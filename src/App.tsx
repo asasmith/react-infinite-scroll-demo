@@ -1,16 +1,24 @@
+import { useState } from 'react';
+import { generateDictionary } from './utils/dictionary';
+import { PageWrapper } from './components/PageWrapper';
+import { useEffect } from 'react';
 import './App.css';
-import { List } from './components/List';
-import { ListWrapper } from './components/ListWrapper';
 
 function App() {
-    return (
-        <div className="h-screen flex flex-col justify-center items-center">
-            <h2 className="mb-8 text-4xl">Dictionary</h2>
-            <ListWrapper>
-                <List />
-            </ListWrapper>
-        </div>
+    const [dictionary, setDictionary] = useState<string[]>([]);
+
+    useEffect(
+        function () {
+            setDictionary(generateDictionary(1000));
+        },
+        [setDictionary],
     );
+
+    if (dictionary === undefined) {
+        return null;
+    }
+
+    return <PageWrapper dictionary={dictionary} />;
 }
 
 export default App;
