@@ -1,13 +1,18 @@
-type ListWrapperProps = {
-    children: React.ReactNode;
-};
+import { forwardRef } from 'react';
 
-const classes = 'h-1/2 w-96 border border-white overflow-y-auto';
+interface Props {
+    children?: React.ReactNode;
+}
 
-export function ListWrapper({ children }: ListWrapperProps): JSX.Element {
+const classes = 'h-1/2 max-h-[1000px] w-96 border border-white overflow-y-auto';
+
+export const ListWrapper = forwardRef(function (
+    props: Props,
+    ref: React.Ref<HTMLDivElement>,
+) {
     return (
-        <div className={classes}>
-            {children}
+        <div className={classes} ref={ref}>
+            {props.children}
         </div>
     );
-}
+});

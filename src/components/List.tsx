@@ -1,16 +1,12 @@
-import { generateDictionary } from '../utils/dictionary';
-import { ListItem } from './ListItem';
+type Props = {
+        children?: React.ReactNode;
+    }
 
-export function List() {
-    const wordsArr = generateDictionary(500);
+export function List({ children }: Props) {
 
     return (
-        <div>
-            <ul>
-                {wordsArr.map((word) => (
-                    <ListItem data={word} key={word} />
-                ))}
-            </ul>
-        </div>
+        <ul>
+            {children}
+        </ul>
     );
 }
